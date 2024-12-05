@@ -150,56 +150,41 @@ void freeTree(TreeNode* root) {
     }
 }
 
-// Main function
-int main() {
+
+int main(){
+    int choice,ele,max;
     TreeNode* root = NULL;
-
-    // Insert nodes into the binary tree
-    root = insert(root, 50);
-    insert(root, 30);
-    insert(root, 20);
-    insert(root, 10);
-    insert(root, 51);
-    insert(root, 45);
-    insert(root, 35);
-    insert(root, 49);
-    insert(root, 40);
-    insert(root, 70);
-    insert(root, 60);
-    insert(root, 80);
-
-    printf("Inorder traversal of the binary tree: ");
-    inorder(root);
-    printf("\n");
-
-    printf("Preorder traversal of the binary tree: ");
-    preorder(root);
-    printf("\n");
-
-    printf("Postorder traversal of the binary tree: ");
-    postorder(root);
-    printf("\n");
-
-    // Display the tree graphically
-    printf("\nGraphical representation of the binary tree:\n");
-    displayTree(root, 0);
-
-    // Search for a node
-    int key = 40;
-    TreeNode* found = search(root, key);
-    if (found != NULL) {
-        printf("\nKey %d found in the binary tree.\n", key);
-    } else {
-        printf("\nKey %d not found in the binary tree.\n", key);
+    while(1){
+        printf("\nenter your choice\n");
+        printf("1 for insert\n2 for inorder\n3 for preorder\n4 for postorder\n5 for search\n");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+                printf("Enter Element to be inserted:");
+                scanf("%d",&ele);
+                root = insert(root, ele);
+                break;
+            case 2:
+                inorder(root);
+                break;
+            case 3:
+                preorder(root);
+                break;
+            case 4:
+                postorder(root);
+                break;
+            case 5:
+                printf("Enter Element to be searched:");
+                scanf("%d",&ele);
+                TreeNode* found = search(root, ele);
+                if (found){
+                    printf("found");
+                }else{
+                    printf("Not found");
+                }
+                break;
+            default:
+                printf("invalid choice");
+        }
     }
-
-    // Delete a node
-    root = deleteNode(root, 20);
-    printf("Inorder traversal after deleting 20: ");
-    inorder(root);
-    printf("\n");
-
-    // Free the memory
-    freeTree(root);
-    return 0;
 }
